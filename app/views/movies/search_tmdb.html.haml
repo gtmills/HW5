@@ -1,0 +1,21 @@
+%h1 The following movies containing were found 
+
+= form_tag :action => 'add_tmdb' do
+  %table#movies
+    %thead
+      %tr
+        %th Movie Title
+        %th Rating
+        %th Release Date
+        %th Select
+    %tbody
+      - @matchingmovies.each do |movie|
+        %tr
+          %td= movie[:title]
+          %td= movie[:rating]
+          %td= movie[:release_date]
+          %td=check_box_tag "tmdb_movies[#{movie[:tmdb_id]}]"
+  = submit_tag 'Add Checked Movies', :id => 'tmdb_movies'
+
+= link_to 'Return to All Movies', movies_path
+
